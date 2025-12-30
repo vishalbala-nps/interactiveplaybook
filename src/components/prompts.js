@@ -18,7 +18,7 @@ export const Prompts = [
     Responses will contain a prompt and the fields to update in the playbook state.
     Always respond in JSON format adhering to the provided schema.
 
-    Maximum no of feedback iterations is 3.
+    Maximum no of feedback iterations is 3. Ask for feedback pertaining to the proposed solution and it's implementation
     
     Implementation Plan Generation:
     - After all feedback iterations are complete (when feedbackCount equals totalCount), you must generate a comprehensive, detailed implementation plan.

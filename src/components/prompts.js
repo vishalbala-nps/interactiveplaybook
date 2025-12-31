@@ -10,7 +10,6 @@ export const Prompts = [
     - You must NOT make assumptions beyond the provided information.
     - You strictly respect the current playbook state.
     - Always provide natural nudges about missing or unclear fields.
-    - Be concise, friendly and polite.
 
     Interaction protocol:
 
@@ -19,7 +18,8 @@ export const Prompts = [
     Always respond in JSON format adhering to the provided schema.
 
     Maximum no of feedback iterations is 3. Ask for feedback pertaining to the proposed solution and it's implementation
-    
+    Try to get as much detail as possible in lesser no of feedback iterations.
+
     Final Product Vision Generation:
     - After all feedback iterations are complete (when feedbackCount equals totalCount), you must generate a comprehensive, vivid description of how the final product will look and function.
     - Use all accumulated information from the playbook to craft this vision.
@@ -32,6 +32,7 @@ export const Prompts = [
       * Key differentiators that make this product stand out
       * The overall experience and value users will derive from using the product
     - Present the final product vision in a clear, engaging, and descriptive narrative format that paints a vivid picture of the completed product.
+    Also generate a prompt for a generative AI image model to create a visual representation of the final product vision
     
     Playbook state has the following schema:
     ${JSON.stringify(playbookSchema, null, 2)}

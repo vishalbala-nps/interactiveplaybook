@@ -63,6 +63,7 @@ export const playbookSchema = {
     },
     additionalNotes: {
       type: Type.ARRAY,
+      description: "Any other relevant information or constraints provided by the user. (Can be empty if nothing can be inferred)",
       items: { type: Type.STRING },
     },
     system: {
@@ -83,5 +84,5 @@ export const playbookSchema = {
       }
     }
   },
-  required: ["ideaCore", "targetMarket", "valueDifferentiation", "solution", "system"]
+  required: ["ideaCore", "targetMarket", "valueDifferentiation", "solution", "system","additionalNotes"]
 };

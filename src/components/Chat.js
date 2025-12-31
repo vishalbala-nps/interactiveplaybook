@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { GoogleGenAI } from '@google/genai';
 import { Prompts } from './prompts';
 import { responseSchema } from './responseSchema';
@@ -27,6 +28,7 @@ function Chat({ open, onClose }) {
     const ai = new GoogleGenAI({ apiKey: process.env.REACT_APP_GEMINI_API_KEY });
     chatRef.current = ai.chats.create({
       model: "gemini-2.5-flash",
+      model: "gemma-3-27b-it",
       config: {
         systemInstruction: Prompts[0],
         responseMimeType: 'application/json',
@@ -71,6 +73,10 @@ function Chat({ open, onClose }) {
     }
   };
 
+  const clearChat = () => {
+    setMessages([]);
+  };
+
   return (
     <Dialog
       open={open}
@@ -90,9 +96,14 @@ function Chat({ open, onClose }) {
     >
       <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         Chat
-        <IconButton onClick={onClose} size="small">
-          <CloseIcon />
-        </IconButton>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <IconButton onClick={clearChat} size="small" title="Clear chat">
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={onClose} size="small">
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </DialogTitle>
       <DialogContent dividers sx={{ display: 'flex', flexDirection: 'column', p: 0 }}>
         {/* Messages Area */}
@@ -128,9 +139,19 @@ function Chat({ open, onClose }) {
             ))
           )}
           {isLoading && (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-              <CircularProgress size={24} />
-            </Box>
+            <Paper
+              sx={{
+                p: 1.5,
+                mb: 1,
+                maxWidth: '80%',
+                bgcolor: 'grey.200',
+                color: 'text.secondary',
+              }}
+            >
+              <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+                Model is typing...
+              </Typography>
+            </Paper>
           )}
           <div ref={messagesEndRef} />
         </Box>

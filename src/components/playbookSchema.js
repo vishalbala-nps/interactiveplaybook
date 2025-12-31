@@ -61,6 +61,10 @@ export const playbookSchema = {
         }
       }
     },
+    additionalNotes: {
+      type: Type.ARRAY,
+      items: { type: Type.STRING },
+    },
     system: {
       type: Type.OBJECT,
       properties: {

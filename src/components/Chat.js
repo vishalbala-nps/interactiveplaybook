@@ -28,7 +28,6 @@ function Chat({ open, onClose }) {
     const ai = new GoogleGenAI({ apiKey: process.env.REACT_APP_GEMINI_API_KEY });
     chatRef.current = ai.chats.create({
       model: "gemini-2.5-flash",
-      model: "gemma-3-27b-it",
       config: {
         systemInstruction: Prompts[0],
         responseMimeType: 'application/json',
